@@ -1,0 +1,1040 @@
+#:import SwapTransition kivy.uix.screenmanager.SwapTransition
+MainScreen:
+    MenuScreen:
+    SimpleCalculator:
+    Temperature:
+    CelsiustoKelvin:
+    Kelvintocelsius:
+    Fahrenheittocelsius:
+    CelsiustoFahrenheit:
+    FahrenheittoKelvin:
+    KelvintoFahrenheit:
+
+<MenuScreen>:
+    name: "Main Menu"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        TextInput:
+            text: "Time:  "+ root.t
+            multiline: False
+            write_tab: False
+            readonly: True
+            font_size:'15sp'
+            pos_hint: {"center_x":.5}
+            size_hint_y: None
+            height: 50
+            size_hint_x: None
+            width: 500
+            bold: True
+            halign: 'center'
+
+
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "top"
+            padding: 50
+            Label:
+                text: "Main Menu"
+                size_hint: .2,.1
+                font_size:'30sp'
+                bold: True
+
+
+        GridLayout:
+            padding: 50
+            spacing: 100
+            cols: 2
+            Button:
+                text: "Calculator"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.current = "calci"
+                on_release: app.root.transition = SwapTransition()
+
+
+            Button:
+                text: "Temperature"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.current = "tempmenu"
+                on_release: app.root.transition = SwapTransition()
+
+
+<SimpleCalculator>:
+    name: "calci"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        TextInput:
+            id: input_box
+            text: "0"
+            font_size: 43
+            multiline: False
+            haling: "left"
+            size_hint: (1,0.19)
+            background_color: 1,1,1, 1
+
+        GridLayout:
+            cols: 4
+            rows: 5
+
+            Button:
+                text: "%"
+                font_size: 32
+                on_press: root.operator("%")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "C"
+                font_size: 32
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: U"\u00AB"
+                font_size: 32
+                on_press: root.rem()
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "/"
+                font_size: 32
+                on_press: root.operator("/")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "7"
+                font_size: 32
+                on_press: root.button_value("7")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "8"
+                font_size: 32
+                on_press: root.button_value("8")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "9"
+                font_size: 32
+                on_press: root.button_value("9")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "X"
+                font_size: 32
+                on_press: root.operator("*")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "4"
+                font_size: 32
+                on_press: root.button_value("4")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "5"
+                font_size: 32
+                on_press: root.button_value("5")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "6"
+                font_size: 32
+                on_press: root.button_value("6")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "-"
+                font_size: 32
+                on_press: root.operator("-")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "1"
+                font_size: 32
+                on_press: root.button_value("1")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "2"
+                font_size: 32
+                on_press: root.button_value("2")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "3"
+                font_size: 32
+                on_press: root.button_value("3")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "+"
+                font_size: 32
+                on_press: root.operator("+")
+                background_color: 0.200, 0.150, 0.250, 1
+
+            Button:
+                text: "+/-"
+                font_size: 32
+                on_press: root.posneg()
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "0"
+                font_size: 32
+                on_press: root.button_value("0")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "."
+                font_size: 32
+                on_press: root.operator(".")
+                background_color: 0.200, 0.150, 0.250, 1
+            Button:
+                text: "="
+                font_size: 32
+                on_press: root.equal_to()
+                background_color: 0.200, 0.150, 0.250, 1
+<Temperature>:
+    name: "tempmenu"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+        GridLayout:
+            cols: 2
+            rows: 3
+            padding: 50
+            spacing: 100
+            Button:
+                text: "Celsius to Kelvin"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.transition = SwapTransition()
+                on_release: app.root.current = "ck"
+
+
+            Button:
+                text: "Kelvin to Celsius"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.transition = SwapTransition()
+                on_release: app.root.current = "kc"
+
+            Button:
+                text: "Fahrenheit to Celsius"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.transition = SwapTransition()
+                on_release: app.root.current = "fc"
+
+            Button:
+                text: "Celsius to Fahrenheit"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.transition = SwapTransition()
+                on_release: app.root.current = "cf"
+
+            Button:
+                text: "Fahrenheit to Kelvin"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.transition = SwapTransition()
+                on_release: app.root.current = "fk"
+
+            Button:
+                text: "Kelvin to Fahrenheit"
+                size_hint: .2,.1
+                font_size:'15sp'
+                background_color: 0.200, 0.150, 0.250, 1
+                bold: True
+                on_release: app.root.transition = SwapTransition()
+                on_release: app.root.current = "kf"
+
+<CelsiustoKelvin>:
+    name: "ck"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            bold: True
+            on_release: app.root.transition = SwapTransition()
+
+        Button:
+            text: "Temperature Menu"
+            bold: True
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="tempmenu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        GridLayout:
+            cols: 2
+            rows: 5
+
+            Label:
+                text: "Enter your celsius value: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                id: input_box
+                bold: True
+                font_size: 22
+                multiline: False
+                write_tab: False
+                hint_text: "0"
+                size_hint_y: None
+                height: 50
+                input_filter: "int"
+                font_size: 16
+
+
+            Label:
+                text: "results: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                text: "Kelvin=" + root.ans
+                bold: True
+                multiline: False
+                write_tab: False
+                font_size: 22
+                readonly: True
+                size_hint_y: None
+                height: 50
+                font_size: 16
+            Button:
+                text: "C"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: U"\u00AB"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.back()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Celsius to kelvin"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Formula: K = c + 273.15"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: "Submit"
+                bold: True
+                on_press: root.results()
+                size: root.width,root.height
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: "Message Box"
+                    bold: True
+                    background_color: 0.200, 0.150, 0.250, 1
+                    font_size: 16
+                TextInput:
+                    text: root.error
+                    bold: True
+                    multiline: False
+                    write_tab: False
+                    readonly: True
+                    size_hint_y: None
+                    height: 50
+                    font_size: 16
+
+
+
+
+<Kelvintocelsius>:
+    name: "kc"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            bold: True
+            on_release: app.root.transition = SwapTransition()
+
+        Button:
+            text: "Temperature Menu"
+            bold: True
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="tempmenu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        GridLayout:
+            cols: 2
+            rows: 5
+
+            Label:
+                text: "Enter your kelvin value: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                id: input_box
+                bold: True
+                font_size: 22
+                multiline: False
+                write_tab: False
+                hint_text: "0"
+                size_hint_y: None
+                height: 50
+                input_filter: "int"
+                font_size: 16
+
+
+            Label:
+                text: "results: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                text: "Celsius=" + root.ans
+                bold: True
+                multiline: False
+                write_tab: False
+                font_size: 22
+                readonly: True
+                size_hint_y: None
+                height: 50
+                font_size: 16
+            Button:
+                text: "C"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: U"\u00AB"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.back()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Kelvin to celsius"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Formula: C = K - 273.15"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: "Submit"
+                bold: True
+                on_press: root.results()
+                size: root.width,root.height
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: "Message Box"
+                    bold: True
+                    background_color: 0.200, 0.150, 0.250, 1
+                    font_size: 16
+                TextInput:
+                    text: root.error
+                    bold: True
+                    multiline: False
+                    write_tab: False
+                    readonly: True
+                    size_hint_y: None
+                    height: 50
+                    font_size: 16
+
+
+<Fahrenheittocelsius>:
+    name: "fc"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            bold: True
+            on_release: app.root.transition = SwapTransition()
+
+        Button:
+            text: "Temperature Menu"
+            bold: True
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="tempmenu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        GridLayout:
+            cols: 2
+            rows: 5
+
+            Label:
+                text: "Enter your Fahrenheit value:  "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                id: input_box
+                bold: True
+                font_size: 22
+                multiline: False
+                write_tab: False
+                hint_text: "0"
+                size_hint_y: None
+                height: 50
+                input_filter: "int"
+                font_size: 16
+
+
+            Label:
+                text: "results: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                text: "Celsius=" + root.ans
+                bold: True
+                multiline: False
+                write_tab: False
+                font_size: 22
+                readonly: True
+                size_hint_y: None
+                height: 50
+                font_size: 16
+            Button:
+                text: "C"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: U"\u00AB"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.back()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Fahrenheit  to celsius"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Formula: C = ((F - 32)*5)/9"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: "Submit"
+                bold: True
+                on_press: root.results()
+                size: root.width,root.height
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: "Message Box"
+                    bold: True
+                    background_color: 0.200, 0.150, 0.250, 1
+                    font_size: 16
+                TextInput:
+                    text: root.error
+                    bold: True
+                    multiline: False
+                    write_tab: False
+                    readonly: True
+                    size_hint_y: None
+                    height: 50
+                    font_size: 16
+
+<CelsiustoFahrenheit>:
+    name: "cf"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            bold: True
+            on_release: app.root.transition = SwapTransition()
+
+        Button:
+            text: "Temperature Menu"
+            bold: True
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="tempmenu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        GridLayout:
+            cols: 2
+            rows: 5
+
+            Label:
+                text: "Enter your celsius value:  "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                id: input_box
+                bold: True
+                font_size: 22
+                multiline: False
+                write_tab: False
+                hint_text: "0"
+                size_hint_y: None
+                height: 50
+                input_filter: "int"
+                font_size: 16
+
+
+            Label:
+                text: "results: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                text: "Fahrenheit=" + root.ans
+                bold: True
+                multiline: False
+                write_tab: False
+                font_size: 22
+                readonly: True
+                size_hint_y: None
+                height: 50
+                font_size: 16
+            Button:
+                text: "C"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: U"\u00AB"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.back()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Celsius to Fahrenheit"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Formula: F = (C*9/5) + 32"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: "Submit"
+                bold: True
+                on_press: root.results()
+                size: root.width,root.height
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: "Message Box"
+                    bold: True
+                    background_color: 0.200, 0.150, 0.250, 1
+                    font_size: 16
+                TextInput:
+                    text: root.error
+                    bold: True
+                    multiline: False
+                    write_tab: False
+                    readonly: True
+                    size_hint_y: None
+                    height: 50
+                    font_name: "font/Sketchzone.otf"
+                    font_size: 16
+
+
+<FahrenheittoKelvin>:
+    name: "fk"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            bold: True
+            on_release: app.root.transition = SwapTransition()
+
+        Button:
+            text: "Temperature Menu"
+            bold: True
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="tempmenu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        GridLayout:
+            cols: 2
+            rows: 5
+
+            Label:
+                text: "Enter your Fahrenheit value:  "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                id: input_box
+                bold: True
+                font_size: 22
+                multiline: False
+                write_tab: False
+                hint_text: "0"
+                size_hint_y: None
+                height: 50
+                input_filter: "int"
+                font_size: 16
+
+
+            Label:
+                text: "results: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                text: "kelvin=" + root.ans
+                bold: True
+                multiline: False
+                write_tab: False
+                font_size: 22
+                readonly: True
+                size_hint_y: None
+                height: 50
+                font_size: 16
+            Button:
+                text: "C"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: U"\u00AB"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.back()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Fahrenheit to Kelvin"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "K = (F − 32) × 5/9 + 273.15"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: "Submit"
+                bold: True
+                on_press: root.results()
+                size: root.width,root.height
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: "Message Box"
+                    bold: True
+                    background_color: 0.200, 0.150, 0.250, 1
+                    font_size: 16
+                TextInput:
+                    text: root.error
+                    bold: True
+                    multiline: False
+                    write_tab: False
+                    readonly: True
+                    size_hint_y: None
+                    height: 50
+                    font_size: 16
+
+
+
+
+
+<KelvintoFahrenheit>:
+    name: "kf"
+    canvas:
+        Color:
+            rgba: (155/255, 200/255, 255/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        Button:
+            text: "Back To Main Menu"
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="Main Menu"
+            background_color: 0.200, 0.150, 0.250, 1
+            bold: True
+            on_release: app.root.transition = SwapTransition()
+
+        Button:
+            text: "Temperature Menu"
+            bold: True
+            size_hint: .2,.1
+            font_size:'15sp'
+            on_release: app.root.current ="tempmenu"
+            background_color: 0.200, 0.150, 0.250, 1
+            on_release: app.root.transition = SwapTransition()
+
+        GridLayout:
+            cols: 2
+            rows: 5
+
+            Label:
+                text: "Enter your Kelvin value:  "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                id: input_box
+                bold: True
+                font_size: 22
+                multiline: False
+                write_tab: False
+                hint_text: "0"
+                size_hint_y: None
+                height: 50
+                input_filter: "int"
+                font_size: 16
+
+
+            Label:
+                text: "results: "
+                bold: True
+                size_hint_y: None
+                height: 50
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            TextInput:
+                text: "Fahrenheit=" + root.ans
+                bold: True
+                multiline: False
+                write_tab: False
+                font_size: 22
+                readonly: True
+                size_hint_y: None
+                height: 50
+                font_size: 16
+            Button:
+                text: "C"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.clear()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: U"\u00AB"
+                bold: True
+                size_hint_y: None
+                height: 50
+                on_press: root.back()
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "Kelvin to Fahrenheit"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+            Label:
+                text: "F = (K - 273.15) * (9/5) + 32"
+                bold: True
+                color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            Button:
+                text: "Submit"
+                bold: True
+                on_press: root.results()
+                size: root.width,root.height
+                background_color: 0.200, 0.150, 0.250, 1
+                font_size: 16
+
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: "Message Box"
+                    bold: True
+                    background_color: 0.200, 0.150, 0.250, 1
+                    font_size: 16
+                TextInput:
+                    text: root.error
+                    bold: True
+                    multiline: False
+                    write_tab: False
+                    readonly: True
+                    size_hint_y: None
+                    height: 50
+                    font_size: 16
